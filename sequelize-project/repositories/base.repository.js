@@ -1,7 +1,7 @@
 class BaseRepository {
   constructor(model) {
     this.model = model;
-    console.log("Setting the base model to: ", model.toString())
+    //console.log("Setting the base model to: ", model.toString())
   }
 
   async findAll(options = {}) {

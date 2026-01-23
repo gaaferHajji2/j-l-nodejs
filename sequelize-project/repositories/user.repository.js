@@ -3,7 +3,7 @@ const BaseRepository = require('./base.repository');
 class UserRepository extends BaseRepository {
   constructor() {
     super(require('../models').User);
-    console.log("Setting the base model to: User")
+    //console.log("Setting the base model to: User")
   }
 
   // Get all users with only specific columns for listing

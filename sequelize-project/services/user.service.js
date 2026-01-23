@@ -23,6 +23,8 @@ class UserService {
     const { username, email } = userData;
     console.log("The username is: ", username)
     console.log("The email is: ", email)
+
+    // console.log("The repository is:", userRepository.model)
     
     // Check if user already exists
     const existingUser = await User.findOne({ 
