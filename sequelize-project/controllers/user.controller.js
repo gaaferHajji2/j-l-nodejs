@@ -49,9 +49,13 @@ class UserController {
         message: 'User created successfully'
       });
     } catch (error) {
+      console.error("stack is: ", error.stack)
+      console.log("-".repeat(25))
+      console.error("error is: ", error)
       res.status(400).json({
         success: false,
-        message: error.message
+        message: error.message,
+        status: error.status
       });
     }
   }

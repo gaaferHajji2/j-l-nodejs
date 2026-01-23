@@ -1,5 +1,7 @@
 const userRepository = require('../repositories/user.repository');
 const postRepository = require('../repositories/post.repository');
+const { Op } = require('sequelize')
+const User = require("../models").User
 
 class UserService {
   // Get all users with minimal data
@@ -19,17 +21,21 @@ class UserService {
   // Create new user with profile
   async createUser(userData, profileData) {
     const { username, email } = userData;
+    console.log("The username is: ", username)
+    console.log("The email is: ", email)
     
     // Check if user already exists
-    const existingUser = await userRepository.findOne({ 
+    const existingUser = await User.findOne({ 
       where: { 
-        [require('sequelize').Op.or]: [{ username }, { email }] 
+        [Op.or]: [{username: userData.username}, {email: userData.email}] 
       } 
     });
     
     if (existingUser) {
       throw new Error('Username or email already exists');
     }
+
+    console.log("User not found")
 
     // Create user with profile using transaction
     const transaction = await require('../models').sequelize.transaction();

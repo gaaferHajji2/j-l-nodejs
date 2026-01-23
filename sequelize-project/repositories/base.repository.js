@@ -1,6 +1,7 @@
 class BaseRepository {
   constructor(model) {
     this.model = model;
+    console.log("Setting the base model to: ", model.toString())
   }
 
   async findAll(options = {}) {
@@ -16,6 +17,7 @@ class BaseRepository {
   }
 
   async create(data, options = {}) {
+    console.log("The data is: ", data)
     return await this.model.create(data, options);
   }
 
