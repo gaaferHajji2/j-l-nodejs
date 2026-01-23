@@ -42,7 +42,8 @@ class PostRepository extends BaseRepository {
         },
         {
           model: require('../models').Tag,
-          as: 'tags'
+          as: 'tags',
+          through: { attributes: [] }
         }
       ]
     });
