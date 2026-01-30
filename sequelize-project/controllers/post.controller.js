@@ -80,7 +80,7 @@ class PostController {
       const { id } = req.params;
       const result = await postService.deletePost(id);
       
-      res.json({
+      res.status(204).json({
         success: true,
         data: result,
         message: 'Post deleted successfully'
