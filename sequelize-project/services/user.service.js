@@ -19,13 +19,7 @@ class UserService {
   }
 
   // Create new user with profile
-  async createUser(userData, profileData) {
-    const { username, email } = userData;
-    console.log("The username is: ", username)
-    console.log("The email is: ", email)
-
-    // console.log("The repository is:", userRepository.model)
-    
+  async createUser(userData, profileData) {    
     // Check if user already exists
     const existingUser = await User.findOne({ 
       where: { 
