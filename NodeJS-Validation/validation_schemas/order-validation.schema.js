@@ -31,3 +31,5 @@ const orderValidation = [
     .isLength({ min: 5, max: 20 })
     .withMessage('Invalid coupon code format')
 ];
+
+module.exports = { orderValidation }

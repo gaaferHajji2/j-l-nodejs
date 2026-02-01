@@ -31,3 +31,5 @@ const userRegistrationValidation = [
     .isBoolean()
     .withMessage('Newsletter must be a boolean value')
 ];
+
+module.exports = { userRegistrationValidation }
