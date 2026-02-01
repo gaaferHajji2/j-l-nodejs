@@ -17,9 +17,13 @@ router.post(
   });
 })
 
-app.post('/api/profile', sanitizeExample, handleValidationErrors, (req, res) => {
+router.post('/api/profile', sanitizeExample, handleValidationErrors, (req, res) => {
   // All inputs are now sanitized
   res.json({ sanitized: req.body });
+});
+
+router.post('/api/async-validation', asyncValidation, handleValidationErrors, (req, res) => {
+  res.json({ message: 'Validation passed including async checks' });
 });
 
 
