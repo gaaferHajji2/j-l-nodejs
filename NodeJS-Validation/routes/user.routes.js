@@ -26,5 +26,4 @@ router.post('/api/async-validation', asyncValidation, handleValidationErrors, (r
   res.json({ message: 'Validation passed including async checks' });
 });
 
-
 module.exports = router

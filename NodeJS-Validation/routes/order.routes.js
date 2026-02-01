@@ -18,3 +18,5 @@ router.get('/api/users/:userId/posts',
       query: req.query
     });
 })
+
+module.exports = router;
