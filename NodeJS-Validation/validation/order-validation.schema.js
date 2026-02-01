@@ -1,4 +1,4 @@
-const { body } = require('express-validator')
+const { body, param, query } = require('express-validator')
 
 const orderValidation = [
   body('items')
@@ -32,4 +32,16 @@ const orderValidation = [
     .withMessage('Invalid coupon code format')
 ];
 
-module.exports = { orderValidation }
+const orderUserValidation = [
+    param('userId').isUUID().withMessage('Invalid user ID'),
+    query('limit')
+      .optional()
+      .isInt({ min: 1, max: 100 })
+      .withMessage('Limit must be between 1 and 100'),
+    query('sort')
+      .optional()
+      .isIn(['asc', 'desc'])
+      .withMessage('Sort must be asc or desc')
+  ]
+
+module.exports = { orderValidation, orderUserValidation }
