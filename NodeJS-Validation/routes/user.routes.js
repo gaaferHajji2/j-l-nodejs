@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { userRegistrationValidation } = require('../validation/user-registration-validation.schema')
 const { handleValidationErrors } = require('../middleware/handle-validation-errors.middleware')
 const { sanitizeExample } = require('../validation/sanitize-example.schema')
+const { asyncValidation } = require('../validation/async-validation.schema')
 
 router.post(
   '/api/users/register', 
