@@ -9,12 +9,12 @@ router.post(
   userRegistrationValidation, 
   handleValidationErrors, 
   async (req, res) => {
-  const { email, username, password } = req.body
+  const { email, username, password, age, newsletter } = req.body
 
   res.status(201).json({
     success: true,
     message: 'User registered successfully',
-    data: { email, username }
+    data: { email, username, age, newsletter }
   });
 })
 
