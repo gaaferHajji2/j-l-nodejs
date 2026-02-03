@@ -30,7 +30,7 @@ async function checkEmailExists(email) {
 
 async function validateReferralCode(code) {
   // Replace with actual validation
-  return code === 'VALID123';
+  return code === 'JLoka-01';
 }
 
 module.exports = { asyncValidation }
