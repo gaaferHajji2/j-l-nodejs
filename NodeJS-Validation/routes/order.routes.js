@@ -10,7 +10,7 @@ router.post('/api/orders', orderValidation, handleValidationErrors, async (req, 
   });
 });
 
-router.get('/api/users/:userId/posts', 
+router.get('/api/users/:userId/orders', 
   orderUserValidation, handleValidationErrors, 
   async (req, res) => {
     res.json({
