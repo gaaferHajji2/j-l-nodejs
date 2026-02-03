@@ -11,6 +11,20 @@ app.use('/user', userRouter)
 app.use('/order', orderRouter)
 app.use('/accounts', accountsRouter)
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    success: false,
+    message: 'Internal server error'
+  });
+});
+
+app.use((req, res, next) => {
+    return res.status(404).json({
+        msg: "Not Found"
+    })
+})
+
 app.listen(3000, (error) => {
     if(error) {
         throw error
