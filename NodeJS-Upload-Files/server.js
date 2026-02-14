@@ -2,6 +2,7 @@ const express = require('express')
 const multer = require('multer')
 const path = require('path')
 const fs = require('fs')
+const mime = require('mime')
 const { v4: uuidv4 } = require('uuid')
 
 const app = express()
@@ -125,6 +126,20 @@ app.post('/upload-single', upload.single('image'), (req, res) => {
     });
   }
 });
+
+app.get('/get-image/:imagename', (req, res) => {
+  const imagePath = `${uploadDir}/${req.params['imagename']}`
+  if(fs.existsSync(imagePath)) {
+    const mimeType = mime.getType(imagePath) || 'image/png'
+    res.writeHead(200, {
+      'content-type': mimeType
+    })
+    fs.createReadStream(imagePath).pipe(res)
+    return;
+  } else {
+    return res.status(404).json({})
+  }
+})
 
 // Multer error handler
 app.use((error, req, res, next) => {
