@@ -130,12 +130,11 @@ app.post('/upload-single', upload.single('image'), (req, res) => {
 app.get('/get-image/:imagename', (req, res) => {
   const imagePath = `${uploadDir}/${req.params['imagename']}`
   console.log(`imagePath: ${imagePath}`)
-  
+
   if(fs.existsSync(imagePath)) {
-    const mimeType = mime.getType(imagePath) || 'image/png'
-    res.writeHead(200, {
-      'content-type': mimeType
-    })
+    const t1 = new mime.Mime()
+    const mimeType = t1.getType(imagePath) || 'image/png'
+    res.setHeader('content-type', mimeType)
     return res.sendFile(imagePath)
   } else {
     return res.status(404).json({})
