@@ -42,6 +42,6 @@ const orderUserValidation = [
       .optional()
       .isIn(['asc', 'desc'])
       .withMessage('Sort must be asc or desc')
-  ]
+]
 
 module.exports = { orderValidation, orderUserValidation }
