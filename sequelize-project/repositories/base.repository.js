@@ -17,7 +17,7 @@ class BaseRepository {
   }
 
   async create(data, options = {}) {
-    console.log("The data is: ", data)
+    // console.log("The data is: ", data)
     return await this.model.create(data, options);
   }
 

@@ -1,5 +1,4 @@
 const postService = require('../services/post.service');
-
 class PostController {
   // Get all posts (returns only necessary columns)
   async getAllPosts(req, res) {
@@ -128,7 +127,6 @@ class PostController {
       const limit = parseInt(req.query.limit) || 10;
       
       const result = await postService.getPublishedPosts(page, limit);
-      
       res.json({
         success: true,
         data: result.data,

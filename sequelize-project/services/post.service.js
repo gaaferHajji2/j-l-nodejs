@@ -1,6 +1,5 @@
 const postRepository = require('../repositories/post.repository');
 const userRepository = require('../repositories/user.repository');
-
 class PostService {
   // Get all posts with minimal data
   async getAllPosts() {
@@ -23,7 +22,6 @@ class PostService {
     if (!user) {
       throw new Error('User not found');
     }
-
     return await postRepository.create(postData);
   }
 
@@ -33,7 +31,6 @@ class PostService {
     if (!post) {
       throw new Error('Post not found');
     }
-
     return await postRepository.update(id, postData);
   }
 
@@ -52,17 +49,14 @@ class PostService {
     if (!post) {
       throw new Error('Post not found');
     }
-
     // Verify all tags exist
     const Tag = require('../models').Tag;
     const tags = await Tag.findAll({
       where: { id: tagIds }
     });
-
     if (tags.length !== tagIds.length) {
       throw new Error('One or more tags not found');
     }
-
     return await postRepository.addTagsToPost(postId, tagIds);
   }
 

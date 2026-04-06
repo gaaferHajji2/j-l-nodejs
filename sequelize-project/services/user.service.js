@@ -22,7 +22,7 @@ class UserService {
   async createUser(userData, profileData) {    
     // Check if user already exists
     const existingUser = await User.findOne({ 
-      where: { 
+      where: {
         [Op.or]: [{username: userData.username}, {email: userData.email}] 
       } 
     });
@@ -30,9 +30,7 @@ class UserService {
     if (existingUser) {
       throw new Error('Username or email already exists');
     }
-
-    console.log("User not found")
-
+    // console.log("User not found")
     // Create user with profile using transaction
     const transaction = await require('../models').sequelize.transaction();
     
@@ -45,7 +43,6 @@ class UserService {
           { transaction }
         );
       }
-      
       await transaction.commit();
       return await userRepository.findUserById(user.id);
     } catch (error) {
@@ -62,7 +59,6 @@ class UserService {
     }
 
     const transaction = await require('../models').sequelize.transaction();
-    
     try {
       // Update user
       if (Object.keys(userData).length > 0) {
