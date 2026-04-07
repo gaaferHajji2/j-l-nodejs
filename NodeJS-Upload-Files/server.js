@@ -129,7 +129,7 @@ app.post('/upload-single', upload.single('image'), (req, res) => {
 
 app.get('/get-image/:imagename', (req, res) => {
   const imagePath = `${uploadDir}/${req.params['imagename']}`
-  console.log(`imagePath: ${imagePath}`)
+  // console.log(`imagePath: ${imagePath}`)
 
   if(fs.existsSync(imagePath)) {
     const t1 = new mime.Mime()
@@ -179,7 +179,7 @@ app.use((error, req, res, next) => {
 
 // General error handler
 app.use((error, req, res, next) => {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
         success: false,
         message: 'Internal server error',
