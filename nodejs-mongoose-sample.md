@@ -556,6 +556,7 @@ const Comment = require('../models/Comment');
 
 // Fields for list view (lightweight)
 const POST_LIST_FIELDS = 'title slug excerpt author status tags views likes createdAt publishedAt';
+
 // Fields to exclude in detail view
 const POST_EXCLUDE_FIELDS = '-__v';
 
