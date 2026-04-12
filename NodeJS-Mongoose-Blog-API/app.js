@@ -11,7 +11,7 @@ const postRoutes = require('./routes/postRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 
 // Error handler
-const errorHandler = require('./middleware/errorHandler');
+const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 

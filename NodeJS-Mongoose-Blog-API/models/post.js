@@ -117,7 +117,7 @@ postSchema.pre('save', function(next) {
 // Index for common queries
 postSchema.index({ status: 1, createdAt: -1 });
 postSchema.index({ tags: 1 });
-postSchema.index({ author: 1 });
-postSchema.index({ slug: 1 });
+// postSchema.index({ author: 1 });
+// postSchema.index({ slug: 1 });
 
 module.exports = mongoose.model('Post', postSchema);
