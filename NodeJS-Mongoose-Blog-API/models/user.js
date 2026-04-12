@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -64,40 +64,43 @@ const userSchema = new mongoose.Schema({
   timestamps: true, // Adds createdAt and updatedAt
   toJSON: { virtuals: true },
   toObject: { virtuals: true }
-});
+})
 
 // Virtual for full name
 userSchema.virtual('fullName').get(function() {
-  return `${this.profile.firstName || ''} ${this.profile.lastName || ''}`.trim();
-});
+  return `${this.profile.firstName || ''} ${this.profile.lastName || ''}`.trim()
+})
 
 // Virtual populate for posts
 userSchema.virtual('posts', {
   ref: 'Post',
   localField: '_id',
   foreignField: 'author'
-});
+})
 
 // Hash password before saving
-userSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
+userSchema.pre('save', async function() {
+  if (!this.isModified('password')) return
   
   try {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
+    const salt = await bcrypt.genSalt(10)
+    console.log(`The salt is: ${salt}`)
+    this.password = await bcrypt.hash(this.password, salt)
+    console.log(`The password is: ${this.password}`)
+    // next()
   } catch (error) {
-    next(error);
+    console.error(error.message)
+    throw new Error(error.message)
   }
-});
+})
 
 // Compare password method
 userSchema.methods.comparePassword = async function(candidatePassword) {
-  return await bcrypt.compare(candidatePassword, this.password);
-};
+  return await bcrypt.compare(candidatePassword, this.password)
+}
 
 // Index for better query performance
-// userSchema.index({ email: 1 });
-// userSchema.index({ username: 1 });
+// userSchema.index({ email: 1 })
+// userSchema.index({ username: 1 })
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema)
