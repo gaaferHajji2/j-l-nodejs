@@ -11,10 +11,10 @@ exports.createUser = async (req, res, next) => {
     const { username, email, password, profile, role } = req.body
 
     const t1 = await User.findOne({
-        $or: {
-            { username },
-            { email }
-        }
+      $or: [
+        { username },
+        { email }
+      ]
     })
 
     if(t1) {
@@ -41,8 +41,8 @@ exports.createUser = async (req, res, next) => {
         username: user.username, 
         email: user.email,
         firstName:  user.profile.firstName, 
-        lastName: user.profile.lastName 
-        role: user.role 
+        lastName: user.profile.lastName,
+        role: user.role, 
         isActive: user.isActive, 
         createdAt: user.createdAt
       }
