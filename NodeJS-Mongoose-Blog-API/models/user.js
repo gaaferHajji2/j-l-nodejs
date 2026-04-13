@@ -84,9 +84,9 @@ userSchema.pre('save', async function() {
   
   try {
     const salt = await bcrypt.genSalt(10)
-    console.log(`The salt is: ${salt}`)
+    // console.log(`The salt is: ${salt}`)
     this.password = await bcrypt.hash(this.password, salt)
-    console.log(`The password is: ${this.password}`)
+    // console.log(`The password is: ${this.password}`)
     // next()
   } catch (error) {
     console.error(error.message)
