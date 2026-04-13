@@ -12,7 +12,7 @@ exports.createPost = async (req, res, next) => {
   try {
     delete req.body.views;
     delete req.body.likes;
-    
+
     const post = await Post.create({
       ...req.body,
       author: req.body.author || req.user?.id // Fallback to authenticated user
@@ -36,7 +36,7 @@ exports.getAllPosts = async (req, res, next) => {
     const { 
       page = 1, 
       limit = 10, 
-      status = 'published', 
+      status = 'draft', 
       author, 
       tag,
       category,
@@ -119,7 +119,7 @@ exports.getPostById = async (req, res, next) => {
 // Get post by slug (for frontend)
 exports.getPostBySlug = async (req, res, next) => {
   try {
-    const post = await Post.findOne({ slug: req.params.slug, status: 'published' })
+    const post = await Post.findOne({ slug: req.params.slug })
       .select(POST_EXCLUDE_FIELDS)
       .populate({
         path: 'author',
