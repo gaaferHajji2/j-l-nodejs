@@ -79,7 +79,7 @@ userSchema.virtual('posts', {
 })
 
 // Hash password before saving
-// with sync function here we don't need next-function for the new Mongoose version
+// with sync/async function here we don't need next-function for the new Mongoose version
 userSchema.pre('save', async function() {
   if (!this.isModified('password')) return
   

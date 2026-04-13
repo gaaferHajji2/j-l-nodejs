@@ -93,7 +93,7 @@ postSchema.virtual('comments', {
 });
 
 // Pre-save middleware to generate slug
-postSchema.pre('save', function(next) {
+postSchema.pre('save', function() {
   if (this.isModified('title')) {
     this.slug = this.title
       .toLowerCase()
@@ -110,8 +110,6 @@ postSchema.pre('save', function(next) {
   if (!this.excerpt && this.content) {
     this.excerpt = this.content.substring(0, 200) + (this.content.length > 200 ? '...' : '');
   }
-  
-  next();
 });
 
 // Index for common queries

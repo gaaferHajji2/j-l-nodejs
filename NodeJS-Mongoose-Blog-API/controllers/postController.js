@@ -10,6 +10,9 @@ const POST_EXCLUDE_FIELDS = '-__v'
 
 exports.createPost = async (req, res, next) => {
   try {
+    delete req.body.views;
+    delete req.body.likes;
+    
     const post = await Post.create({
       ...req.body,
       author: req.body.author || req.user?.id // Fallback to authenticated user

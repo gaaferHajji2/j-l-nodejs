@@ -1,5 +1,5 @@
 // controllers/userController.js
-const User = require('../models/User')
+const User = require('../models/user')
 
 // Fields to select when getting all users (lightweight)
 const USER_LIST_FIELDS = 'username email profile.firstName profile.lastName role isActive createdAt'
@@ -92,7 +92,7 @@ exports.getUserById = async (req, res, next) => {
       .populate({
         path: 'posts',
         select: 'title slug status createdAt views',
-        match: { status: 'published' },
+        // match: { status: 'published' },
         options: { sort: { createdAt: -1 }, limit: 5 }
       })
     
