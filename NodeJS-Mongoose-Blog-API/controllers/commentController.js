@@ -110,7 +110,7 @@ exports.getCommentById = async (req, res, next) => {
       })
       .populate({
         path: 'replies',
-        match: { status: 'approved' },
+        // match: { status: 'approved' },
         populate: {
           path: 'author',
           select: 'username profile.avatar'
