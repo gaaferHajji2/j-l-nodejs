@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const commentSchema = new mongoose.Schema({
   content: {
@@ -54,14 +54,14 @@ const commentSchema = new mongoose.Schema({
   timestamps: true,
   toJSON: { virtuals: true },
   toObject: { virtuals: true }
-});
+})
 
 // Virtual for replies (nested comments)
 commentSchema.virtual('replies', {
   ref: 'Comment',
   localField: '_id',
   foreignField: 'parentComment'
-});
+})
 
 // Pre-save middleware to track edits
 commentSchema.pre('save', function() {
@@ -70,31 +70,30 @@ commentSchema.pre('save', function() {
     this.editHistory.push({
       content: this._originalContent,
       editedAt: new Date()
-    });
-    this.isEdited = true;
+    })
+    this.isEdited = true
   }
-});
+})
 
 // Store original content before modification
-commentSchema.pre('findOneAndUpdate', async function() {
-  const doc = await this.model.findOne(this.getQuery());
-  if (doc) {
-    this._originalContent = doc.content;
-    if (this.isModified('content') && !this.isNew) {
-      // Save previous content to history
-      this.editHistory.push({
-        content: this._originalContent,
-        editedAt: new Date()
-      });
-      this.isEdited = true;
-    }
-  }
-
-});
+// commentSchema.pre('findOneAndUpdate', async function() {
+//   const doc = await this.model.findOne(this.getQuery())
+//   if (doc) {
+//     this._originalContent = doc.content
+//     if (this.isModified('content') && !this.isNew) {
+//       // Save previous content to history
+//       this.editHistory.push({
+//         content: this._originalContent,
+//         editedAt: new Date()
+//       })
+//       this.isEdited = true
+//     }
+//   }
+// })
 
 // Index for efficient querying
-commentSchema.index({ post: 1, createdAt: -1 });
-// commentSchema.index({ author: 1 });
-// commentSchema.index({ parentComment: 1 });
+commentSchema.index({ post: 1, createdAt: -1 })
+// commentSchema.index({ author: 1 })
+// commentSchema.index({ parentComment: 1 })
 
-module.exports = mongoose.model('Comment', commentSchema);
+module.exports = mongoose.model('Comment', commentSchema)

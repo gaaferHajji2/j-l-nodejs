@@ -149,18 +149,9 @@ exports.updateComment = async (req, res, next) => {
     
     // Store original content before update
     if (content && content !== comment.content) {
-      comment.editHistory.push({
-        content: comment.content,
-        editedAt: new Date()
-      })
       comment.content = content
-      comment.isEdited = true
+      await comment.save()
     }
-    
-    await comment.save()
-    
-    // const updatedComment = await Comment.findById(comment._id)
-    //   .populate('author', 'username profile.avatar')
     
     res.status(200).json({
       success: true,
