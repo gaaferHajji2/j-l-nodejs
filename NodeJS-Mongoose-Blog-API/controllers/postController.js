@@ -1,6 +1,6 @@
 // controllers/postController.js
-const Post = require('../models/Post')
-const Comment = require('../models/Comment')
+const Post = require('../models/post')
+const Comment = require('../models/comment')
 
 // Fields for list view (lightweight)
 const POST_LIST_FIELDS = 'title slug excerpt author status tags views likes createdAt publishedAt'

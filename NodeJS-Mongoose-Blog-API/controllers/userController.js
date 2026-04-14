@@ -1,5 +1,6 @@
 // controllers/userController.js
 const User = require('../models/user')
+const Post = require('../models/post')
 
 // Fields to select when getting all users (lightweight)
 const USER_LIST_FIELDS = 'username email profile.firstName profile.lastName role isActive createdAt'

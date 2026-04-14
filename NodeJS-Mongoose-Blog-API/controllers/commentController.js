@@ -1,6 +1,6 @@
 // controllers/commentController.js
-const Comment = require('../models/Comment')
-const Post = require('../models/Post')
+const Comment = require('../models/comment')
+const Post = require('../models/post')
 
 // Fields for list view
 const COMMENT_LIST_FIELDS = 'content author post status likes createdAt isEdited'
