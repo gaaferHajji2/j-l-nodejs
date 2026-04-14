@@ -64,7 +64,7 @@ commentSchema.virtual('replies', {
 });
 
 // Pre-save middleware to track edits
-commentSchema.pre('save', function(next) {
+commentSchema.pre('save', function() {
   if (this.isModified('content') && !this.isNew) {
     // Save previous content to history
     this.editHistory.push({
@@ -73,16 +73,23 @@ commentSchema.pre('save', function(next) {
     });
     this.isEdited = true;
   }
-  next();
 });
 
 // Store original content before modification
-commentSchema.pre('findOneAndUpdate', async function(next) {
+commentSchema.pre('findOneAndUpdate', async function() {
   const doc = await this.model.findOne(this.getQuery());
   if (doc) {
     this._originalContent = doc.content;
+    if (this.isModified('content') && !this.isNew) {
+      // Save previous content to history
+      this.editHistory.push({
+        content: this._originalContent,
+        editedAt: new Date()
+      });
+      this.isEdited = true;
+    }
   }
-  next();
+
 });
 
 // Index for efficient querying
