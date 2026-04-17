@@ -1,4 +1,5 @@
 const redis = require('../config/redis')
+const Redis = require('ioredis')
 
 class RedisService {
   constructor() {
@@ -341,7 +342,7 @@ class RedisService {
     }
   }
 
-  subscribe(channel, callback) {
+  async subscribe(channel, callback) {
     // Create separate connection for pub/sub
     const subscriber = new Redis({
       host: process.env.REDIS_HOST || 'localhost',
@@ -350,7 +351,7 @@ class RedisService {
       retryStrategy: (times) => Math.min(times * 50, 2000)
     })
 
-    subscriber.subscribe(channel)
+    await subscriber.subscribe(channel)
     
     subscriber.on('message', (receivedChannel, message) => {
       try {
