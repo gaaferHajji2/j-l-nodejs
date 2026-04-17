@@ -92,7 +92,7 @@ async function runExamples() {
     console.log('8. Health Check:');
     const ping = await redisService.ping();
     console.log('   Ping:', ping);
-    const info = await redisService.info('server');
+    const info = await redisService.info();
     console.log('   Server info:', info.split('\r\n').slice(0, 5).join('\n   '));
 
     // Cleanup
