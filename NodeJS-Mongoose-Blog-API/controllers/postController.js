@@ -17,10 +17,7 @@ exports.createPost = async (req, res, next) => {
       ...req.body,
       author: req.body.author || req.user?.id // Fallback to authenticated user
     })
-    
-    // const populatedPost = await Post.findById(post._id)
-    //   .populate('author', 'username profile.firstName profile.lastName')
-    
+        
     res.status(201).json({
       success: true,
       data: post

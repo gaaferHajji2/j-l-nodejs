@@ -32,10 +32,7 @@ exports.createUser = async (req, res, next) => {
       profile,
       role
     })
-    
-    // Return user without password
-    // const userResponse = await User.findById(user._id).select(USER_EXCLUDE_FIELDS)
-    
+        
     res.status(201).json({
       success: true,
       data: {
