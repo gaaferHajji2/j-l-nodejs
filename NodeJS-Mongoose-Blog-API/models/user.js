@@ -85,10 +85,7 @@ userSchema.pre('save', async function() {
   
   try {
     const salt = await bcrypt.genSalt(10)
-    // console.log(`The salt is: ${salt}`)
     this.password = await bcrypt.hash(this.password, salt)
-    // console.log(`The password is: ${this.password}`)
-    // next()
   } catch (error) {
     console.error(error.message)
     throw new Error(error.message)
@@ -99,9 +96,5 @@ userSchema.pre('save', async function() {
 userSchema.methods.comparePassword = async function(candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password)
 }
-
-// Index for better query performance
-// userSchema.index({ email: 1 })
-// userSchema.index({ username: 1 })
 
 module.exports = mongoose.model('User', userSchema)
