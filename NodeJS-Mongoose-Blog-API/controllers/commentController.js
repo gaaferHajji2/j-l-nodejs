@@ -36,11 +36,7 @@ exports.createComment = async (req, res, next) => {
       author: req.body.author || req.user?.id,
       parentComment: parentCommentId || null
     })
-    
-    // const populatedComment = await Comment.findById(comment._id)
-    //   .populate('author', 'username profile.avatar')
-    //   .populate('post', 'title slug')
-    
+        
     res.status(201).json({
       success: true,
       data: comment
