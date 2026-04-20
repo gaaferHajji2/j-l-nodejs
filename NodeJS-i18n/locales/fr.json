@@ -1,0 +1,17 @@
+{
+  "validation": {
+    "required": "Ce champ est obligatoire",
+    "email": "Veuillez entrer une adresse email valide",
+    "minLength": "Doit contenir au moins {{min}} caractères",
+    "maxLength": "Doit contenir au plus {{max}} caractères",
+    "passwordMatch": "Les mots de passe ne correspondent pas",
+    "numeric": "Doit être un nombre",
+    "date": "Doit être une date valide",
+    "url": "Doit être une URL valide",
+    "oneOf": "Doit être l'un des suivants : {{values}}",
+    "custom": {
+      "usernameTaken": "Ce nom d'utilisateur est déjà pris",
+      "weakPassword": "Le mot de passe doit contenir majuscule, minuscule et chiffre"
+    }
+  }
+}

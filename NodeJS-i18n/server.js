@@ -6,7 +6,7 @@ const path = require('path')
 const app = express()
 // Configure i18n
 i18n.configure({
-  locales: ['en', 'es', 'fr', 'de', 'zh'],
+  locales: ['en', 'es', 'fr'],
   directory: path.join(__dirname, 'locales'),
   defaultLocale: 'en',
   queryParameter: 'lang',

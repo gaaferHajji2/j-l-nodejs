@@ -1,0 +1,17 @@
+{
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "email": "Por favor ingrese un correo electrónico válido",
+    "minLength": "Debe tener al menos {{min}} caracteres",
+    "maxLength": "Debe tener como máximo {{max}} caracteres",
+    "passwordMatch": "Las contraseñas no coinciden",
+    "numeric": "Debe ser un número",
+    "date": "Debe ser una fecha válida",
+    "url": "Debe ser una URL válida",
+    "oneOf": "Debe ser uno de: {{values}}",
+    "custom": {
+      "usernameTaken": "El nombre de usuario ya está en uso",
+      "weakPassword": "La contraseña debe contener mayúscula, minúscula y número"
+    }
+  }
+}
