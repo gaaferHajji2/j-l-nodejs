@@ -2,7 +2,6 @@ const router = require('express').Router()
 
 // Registration route
 router.post('/api/register', 
-  createValidationMiddleware(userRegistrationValidation),
   (req, res) => {
     res.json({
       success: true,
