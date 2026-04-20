@@ -29,6 +29,7 @@ const userRegistrationValidation = [
     .notEmpty()
     .withMessage('validation.required')
     .isLength({ min: 8 })
+    // .withMessage({key: 'validation.minLength', args: { min: 3 }})
     .withMessage('validation.minLength')
     .custom((value) => {
       const hasUpperCase = /[A-Z]/.test(value);
