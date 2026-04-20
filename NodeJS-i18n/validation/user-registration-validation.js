@@ -64,3 +64,5 @@ const userRegistrationValidation = [
     .isIn(['user', 'admin', 'moderator'])
     .withMessage('validation.oneOf')
 ];
+
+module.exports = userRegistrationValidation
