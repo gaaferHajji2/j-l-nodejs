@@ -9,3 +9,11 @@ test('array', () => {
     expect(animals).toContain('Lion')
     expect(animals).toBeInstanceOf(Array)
 })
+
+test('exception', () => {
+    expect(() => getData()).toThrow('Not Found')
+})
+
+function getData() {
+    throw new Error('Not Found')
+}
