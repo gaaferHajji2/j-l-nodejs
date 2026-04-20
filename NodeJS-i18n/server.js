@@ -9,6 +9,8 @@ const localeRouter = require('./routes/locale.router')
 //validation
 const userRegisterValidation = require('./validation/user-registration-validation')
 const loginValidation = require('./validation/login-validation')
+// using validation middleware
+const ValidationMiddleware = require('./middleware/validation.middleare')
 
 const app = express()
 // Configure i18n
@@ -39,7 +41,7 @@ const createValidationMiddleware = (validations) => {
       // Translate error messages
       const translatedErrors = errors.array().map(error => ({
         ...error,
-        msg: req.__(error.msg) // Translate the message key
+        msg: req.__(error.msg, error.value) // Translate the message key
       }))
       
       return res.status(400).json({
@@ -52,9 +54,9 @@ const createValidationMiddleware = (validations) => {
 }
 
 
-app.use('/api/register', createValidationMiddleware(userRegisterValidation), registerRouter)
-app.use('/api/login', createValidationMiddleware(loginValidation), loginRouter)
-app.use('/api/locale', localeRouter)
+app.use('/', ValidationMiddleware.handle(userRegisterValidation), registerRouter)
+app.use('/', ValidationMiddleware.handle(loginValidation), loginRouter)
+app.use('/', localeRouter)
 
 // Error handler
 app.use((err, req, res, next) => {
