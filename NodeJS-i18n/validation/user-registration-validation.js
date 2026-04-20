@@ -1,3 +1,5 @@
+const { body } =require('express-validator')
+
 // User Registration Validation
 const userRegistrationValidation = [
   body('username')

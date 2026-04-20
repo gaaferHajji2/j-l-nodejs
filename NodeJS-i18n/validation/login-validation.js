@@ -1,3 +1,5 @@
+const { body } =require('express-validator')
+
 // Login Validation
 const loginValidation = [
   body('email')
