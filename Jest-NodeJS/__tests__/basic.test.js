@@ -7,4 +7,5 @@ test('addition', () => {
 const animals = ['Lion', 'Tiger']
 test('array', () => {
     expect(animals).toContain('Lion')
+    expect(animals).toBeInstanceOf(Array)
 })
