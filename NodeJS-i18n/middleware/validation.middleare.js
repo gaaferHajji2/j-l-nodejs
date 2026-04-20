@@ -1,3 +1,5 @@
+const { validationResult } = require('express-validator')
+
 class ValidationMiddleware {
   // Format errors with i18n support
   static formatErrors(req, errors) {
