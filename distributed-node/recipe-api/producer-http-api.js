@@ -1,5 +1,7 @@
 // npm install fastify@3.2
-const server = require('fastify')();
+const server = require('fastify')({
+    logger: true
+});
 const HOST = process.env.HOST || '127.0.0.1';
 const PORT = process.env.PORT || 4000;
 
