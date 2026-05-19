@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import User from './models/user.model.js'
+import userRouter from './routes/user.routes.js'
 
 dotenv.config()
 
@@ -16,11 +16,7 @@ let main = async () => {
 
 main().catch((err) => console.log(`Error in connecting to MongoDB`, err))
 
-app.get('/', (req, res) => {
-    return res.json({
-        msg: "Index route"
-    })
-})
+app.use("/api/users", userRouter)
 
 let PORT = process.env.PORT || 3000
 app.listen(PORT, (err) => {
