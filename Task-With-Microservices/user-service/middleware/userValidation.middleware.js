@@ -1,5 +1,4 @@
-const { body, validationResult } = require('express-validator');
-
+import { body, validationResult } from 'express-validator'
 // Define the validation rules
 const registerValidationRules = [
     body('name')
