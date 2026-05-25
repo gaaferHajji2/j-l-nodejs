@@ -1,4 +1,5 @@
 import express from 'express'
+import _ from 'lodash'
 import User from "../models/user.model.js"
 import { registerValidationRules, handleValidationErrors } from "../middleware/userValidation.middleware.js"
 
@@ -27,7 +28,7 @@ router.post("/", registerValidationRules, handleValidationErrors, async (req, re
         // Send response (password is excluded automatically due to select: false in schema)
         res.status(201).json({
             success: true,
-            data: user
+            data: _.pick(user, 'name', 'email', '_id', 'createdAt', 'updatedAt')
         });
     } catch (error) {
         res.status(500).json({
