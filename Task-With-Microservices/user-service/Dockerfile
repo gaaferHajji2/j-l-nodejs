@@ -4,6 +4,8 @@ FROM node:lts-alpine3.23 AS builder
 # Set working directory
 WORKDIR /app
 
+COPY package.json ./
+
 # Copy pnpm lockfile and workspace config first to leverage layer caching
 COPY pnpm-lock.yaml pnpm-workspace.yaml ./
 
