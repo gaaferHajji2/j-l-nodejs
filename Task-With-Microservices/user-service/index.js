@@ -13,10 +13,14 @@ let main = async () => {
     await mongoose.connect(process.env.MONGO_URL)
     console.log(`Connect to Mongodb successfully`)
 }
-
 main().catch((err) => console.log(`Error in connecting to MongoDB`, err))
 
 app.use("/api/users", userRouter)
+app.get("/health", (req, res) => {
+    return res.json({
+        hello: "hello"
+    })
+})
 
 let PORT = process.env.PORT || 3000
 app.listen(PORT, (err) => {
