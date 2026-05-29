@@ -4,16 +4,14 @@ FROM node:lts-alpine3.23 AS builder
 # Set working directory
 WORKDIR /app
 
-COPY package.json ./
-
 # Copy pnpm lockfile and workspace config first to leverage layer caching
-COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY package.json pnpm-workspace.yaml ./
 
 # Install pnpm globally (if not already in base image)
 RUN npm install -g pnpm@latest
 
 # Install dependencies (including workspace packages if any)
-RUN pnpm install --frozen-lockfile --prod=false
+RUN pnpm install
 
 # Copy source code
 COPY . .
