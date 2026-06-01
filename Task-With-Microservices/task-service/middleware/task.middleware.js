@@ -1,4 +1,4 @@
-const { body, param, validationResult } = require('express-validator');
+import { body, param, validationResult } from 'express-validator';
 
 const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
@@ -16,7 +16,6 @@ const handleValidationErrors = (req, res, next) => {
   next();
 };
 
-module.exports = handleValidationErrors;
 // Validation rules for creating a task
 const createTaskValidation = [
   // Validate 'name' field
@@ -46,7 +45,7 @@ const createTaskValidation = [
     .withMessage('Invalid User ID format'),
 ];
 
-module.exports = {
+export {
   createTaskValidation,
   handleValidationErrors,
 };
