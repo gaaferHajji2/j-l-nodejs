@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { createTaskValidation, handleValidationErrors } from '../middleware/task.middleware'
-import Task from '../models/Task'
+import { createTaskValidation, handleValidationErrors } from '../middleware/task.middleware.js'
+import Task from '../models/task.model.js'
 
-router = Router()
+const router = Router()
 
 router.post('/', createTaskValidation, handleValidationErrors, async (req, res) => {
   try {
