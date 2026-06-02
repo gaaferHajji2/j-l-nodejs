@@ -56,8 +56,7 @@ router.get('/', async (req, res) => {
       Task.find()
         .sort({ [sortField]: sortOrder })
         .skip(skip)
-        .limit(limit)
-        .populate('user_id', 'name email'), // Optional: populate user details
+        .limit(limit), // Optional: populate user details
       Task.countDocuments() // Get total count for pagination metadata
     ]);
 
