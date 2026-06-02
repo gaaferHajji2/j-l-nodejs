@@ -22,7 +22,7 @@ app.get("/health", (req, res) => {
     })
 })
 
-let PORT = process.env.PORT || 5001
+let PORT = process.env.PORT || 3001
 app.listen(PORT, (err) => {
     if(err) {
         console.log("Error in creating server: ", error)
