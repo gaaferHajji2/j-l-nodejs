@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+
+# Git
+.git/
+.gitignore
+
+# Environment files (never commit secrets!)
+.env
+.env.local
+.env.*.local
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+
+# Docker-related
+Dockerfile*
+.dockerignore
+docker-compose*.yml
+
+# pnpm specific (optional, since we copy lockfiles explicitly)
+.pnpm-store/
+
+# Build artifacts (if applicable)
+dist/
+build/
+out/
+
+# Documentation
+README.md
+LICENSE
+docs/
+
+# CI/CD configs (unless needed in container)
+.github/
+.gitlab-ci.yml
+.travis.yml
+Jenkinsfile
+
+# Misc
+*.bak
+*.old
+*.orig
