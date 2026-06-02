@@ -18,7 +18,6 @@ const taskSchema = new mongoose.Schema(
 		// user_id: reference to the User model, required
 		user_id: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'User', // Assumes you have a 'User' model
 			required: [true, 'User ID is required'],
 			index: true, // Indexing for faster queries by user
 		},
