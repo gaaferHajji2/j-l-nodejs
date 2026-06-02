@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import taskRouter from './routes/task.route'
+import taskRouter from './routes/task.route.js'
 
 dotenv.config()
 
@@ -15,14 +15,14 @@ let main = async () => {
 }
 main().catch((err) => console.log(`Error in connecting to MongoDB`, err))
 
-app.use("/api/users", taskRouter)
+app.use("/api/tasks", taskRouter)
 app.get("/health", (req, res) => {
     return res.json({
         hello: "hello task route"
     })
 })
 
-let PORT = process.env.PORT || 3000
+let PORT = process.env.PORT || 5001
 app.listen(PORT, (err) => {
     if(err) {
         console.log("Error in creating server: ", error)
