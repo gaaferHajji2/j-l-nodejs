@@ -34,7 +34,7 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY . .
 
 # Expose the service port (adjust if needed)
-EXPOSE 5001
+EXPOSE 3001
 
 # Start the app using ESM entry point
 CMD ["node", "index.js"]
