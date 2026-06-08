@@ -2,6 +2,7 @@ import express from 'express'
 import _ from 'lodash'
 import User from "../models/user.model.js"
 import { registerValidationRules, handleValidationErrors } from "../middleware/userValidation.middleware.js"
+import checkId from '../middleware/checkId.middleware/checkId.middleware.js'
 
 let router = express.Router()
 
@@ -74,6 +75,18 @@ router.get("/", async (req, res) => {
     });
   } catch (error) {
     throw error
+  }
+})
+
+router.get('/:id/exists', checkId, async (req, res) => {
+  try {
+    return res.json({ 
+      exists: await User.exists({ _id: req.params.id }) 
+    });
+  } catch (e) {
+    return res.status(500).json({
+      error: e
+    })
   }
 })
 
