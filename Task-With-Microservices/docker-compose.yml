@@ -65,6 +65,28 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
+  notification-service:
+    build:
+      context: ./notification-service  # Path to your user service directory
+      dockerfile: Dockerfile
+    container_name: jloka-notification-service
+    restart: unless-stopped
+    ports:
+      - "3002:3002"
+    environment:
+      MONGO_URL: mongodb://mongodb:27017/jloka-users-db
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - jloka-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
 
 networks:
   jloka-network:
