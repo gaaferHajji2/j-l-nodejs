@@ -8,7 +8,7 @@ router.post('/', createTaskValidation, handleValidationErrors, async (req, res) 
   try {
     const { name, description, user_id } = req.body;
 
-    let response = await fetch(`http://localhost:3000/api/users/${user_id}/exists`)
+    let response = await fetch(`http://user-service:3000/api/users/${user_id}/exists`)
     let tempUser = await response.json()
 
     if(response.status != 200 || tempUser.exists == null) {
