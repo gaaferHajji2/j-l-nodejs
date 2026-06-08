@@ -16,5 +16,9 @@
       "onFail": "download"
     }
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2"
+  }
 }
