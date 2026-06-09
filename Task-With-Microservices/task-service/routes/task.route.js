@@ -46,12 +46,14 @@ router.post('/', createTaskValidation, handleValidationErrors, async (req, res) 
       name,
       description,
       user_id,
-    });
+    })
+
+    let message = { taskId: newTask._id, user_id, title }
 
     res.status(201).json({
       success: true,
       data: newTask,
-    });
+    })
   } catch (error) {
     // Handle Mongoose validation errors or other DB errors
     res.status(500).json({
