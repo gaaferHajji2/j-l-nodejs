@@ -1,8 +1,33 @@
 import { Router } from 'express'
 import { createTaskValidation, handleValidationErrors } from '../middleware/task.middleware.js'
 import Task from '../models/task.model.js'
+import amqp from 'amqplib'
+
 
 const router = Router()
+
+let channel, connection;
+
+async function connectToRabbitMQ(retries = 3) {
+    while(retries){
+        try {
+            connection = await amqp.connect(process.env.RABBITMQ_URL)
+            channel = await connection.createChannel()
+            await channel.assertQueue("task_created")
+            console.log("Connection To RabbitMQ Successfully")
+
+            return { connection, channel }
+        } catch (e) {
+            console.error("Error In RabbitMQ Connection: " + e.message)
+            retries -= 1
+            if(retries<=0){
+                throw new Error("RabbitMQ Connection Failed")
+            }
+        }
+    }
+}
+
+connectToRabbitMQ().then(()=> {}).catch(e => process.exit(1))
 
 router.post('/', createTaskValidation, handleValidationErrors, async (req, res) => {
   try {
