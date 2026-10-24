@@ -71,5 +71,5 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
   console.log('Available locales: en, es, fr')
-  console.log('Try: curl -X POST "http://localhost:3000/api/register?lang=es" -H "Content-Type: application/json" -d \'{"username":"ad"}\'')
+  console.log('Try: curl -X POST "http://localhost:3000/api/register?lang=es" -H "Content-Type: application/json" -d "{\\\"username\\\":\\\"ad\\\"}"')
 })
