@@ -54,18 +54,6 @@ class ValidationMiddleware {
       next();
     };
   }
-
-  // Sanitize middleware
-  static sanitize(fields) {
-    return (req, res, next) => {
-      fields.forEach(field => {
-        if (req.body[field]) {
-          req.body[field] = req.body[field].trim();
-        }
-      });
-      next();
-    };
-  }
 }
 
 module.exports = ValidationMiddleware;
