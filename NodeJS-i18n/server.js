@@ -1,6 +1,6 @@
 const express = require('express')
 const i18n = require('i18n')
-const { body, validationResult } = require('express-validator')
+const { validationResult } = require('express-validator')
 const path = require('path')
 //routes
 const registerRouter = require('./routes/register.router')
@@ -31,27 +31,27 @@ app.use(express.urlencoded({ extended: true }))
 app.use(i18n.init)
 
 // Custom validation message formatter using i18n
-const createValidationMiddleware = (validations) => {
-  return async (req, res, next) => {
-    // Run all validations
-    await Promise.all(validations.map(validation => validation.run(req)))
+// const createValidationMiddleware = (validations) => {
+//   return async (req, res, next) => {
+//     // Run all validations
+//     await Promise.all(validations.map(validation => validation.run(req)))
     
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      // Translate error messages
-      const translatedErrors = errors.array().map(error => ({
-        ...error,
-        msg: req.__(error.msg, error.value) // Translate the message key
-      }))
+//     const errors = validationResult(req)
+//     if (!errors.isEmpty()) {
+//       // Translate error messages
+//       const translatedErrors = errors.array().map(error => ({
+//         ...error,
+//         msg: req.__(error.msg, error.value) // Translate the message key
+//       }))
       
-      return res.status(400).json({
-        success: false,
-        errors: translatedErrors
-      })
-    }
-    next()
-  }
-}
+//       return res.status(400).json({
+//         success: false,
+//         errors: translatedErrors
+//       })
+//     }
+//     next()
+//   }
+// }
 
 
 app.use('/', ValidationMiddleware.handle(userRegisterValidation), registerRouter)
