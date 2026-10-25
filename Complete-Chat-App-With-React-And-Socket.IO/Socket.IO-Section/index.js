@@ -1,48 +1,23 @@
 const { Server } = require("socket.io");
 
-// const express = require('express');
-
-// const app = express();
-
-// const http = require('http');
-
-// const server = http.createServer(app);
-
 const io = new Server(3000, { cors: "http://localhost:5173" });
 
 let onlineUsers = [];
 
 io.on("connection", (socket) => {
-    // console.log("The Socket ID is: ", socket.id);
-
     // console.log("The Connected Sockets are: ", Object.keys(io.sockets.sockets));
-
     socket.on("disconnect", () => {
-        // console.log("Socket has been disconnected, with socket id: ", socket.id);
-        // console.log("The Reason Has Been: ", reason);
-        // console.log("The Description Has Been: ", description);
-
-        // onlineUser = onlineUser.filter(userId => )
-
         onlineUsers = onlineUsers.filter(user => user.socketId != socket.id);
 
         io.emit("getOnlineUsers", onlineUsers);
     });
 
     // add Message
-    socket.on("addMessage", (message)=> {
-        // console.log("New Message Has Been Added With Data: ", message);
-        // console.log("The Recipient is: ", message.recipientId);
-
-        // console.log("The Online Users Are: ", onlineUsers);
+    socket.on("addMessage", (message) => {
 
         const user = onlineUsers.find(t1 => t1.userId === message.recipientId);
 
-        // console.log("The Recipient User is: ", user);
-
-        if(user) {
-            // console.log("The Message That Will Be Send IN Real-Time: ", message, " with socketId: ", user.socketId);
-
+        if (user) {
             io.to(user.socketId).emit("getMessage", message);
 
             console.log("--------------------------------------------------------");
@@ -63,32 +38,12 @@ io.on("connection", (socket) => {
         }
     });
 
-    socket.on("addNewUser", (userId) => {
-        /// * Here We Must Take In Consideration That The Socket Has Been Changed.
-        /// * So we Must Update the Value of SocketID.
-        let t1 = onlineUsers.find(user => user.userId === userId);
-
-        // if (t1) {
-        //     // console.log("We Have Update The Data For: ", socket.id, ", UserId is: ", userId);
-
-        //     // onlineUsers = onlineUsers.map(user => user.userId === userId ? {
-        //     //     userId: userId,
-        //     //     socketId: socket.id,
-        //     // } : user);
-        // }
-
-        if (t1) {
-            // console.log("We Have Duplicate For userId: ", userId);
-        } else {
-            // console.log("We Have New User For Inserting Data: ", userId);
-
-            onlineUsers.push({
-                userId,
-                socketId: socket.id,
-            });
-
-            // console.log("The Online Users Are: ", onlineUsers);
-        }
+    socket.on("addNewUser", (userId) => {  
+        // TODO: We should handle the case when the user has multiple devices.          
+        onlineUsers.push({
+            userId,
+            socketId: socket.id,
+        });
 
         io.emit("getOnlineUsers", onlineUsers);
     });
