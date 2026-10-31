@@ -32,8 +32,6 @@ app.use(morgan('tiny'));
 app.use('/api/users', userRoutes);
 app.use('/api/chats', chatRoutes);
 app.use('/api/messages', messageRoutes);
-////////////////////////////////////////////////////////////////////////
-
 app.use((err, req, res, next) => {
     console.error("The Error Message is: ", err);
     return res.status(500).json({
@@ -48,8 +46,6 @@ mongoose.connect(process.env.DB_URL).then((connect) => {
 }).catch((err) => {
     console.log("Error During Connecting To Server");
     throw err;
-
-    // process.exit(1);
 });
 
 app.get('/', (req, res) => {
