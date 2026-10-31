@@ -1,7 +1,6 @@
 const express   = require("express");
 const router    = express.Router();
 const bcrypt    = require('bcrypt');
-const jwt       = require('jsonwebtoken');
 const _         = require('lodash');
 
 // The Models Section.
@@ -11,9 +10,6 @@ const User      = require('../models/user');
 const objectId  = require('../middleware/objectId');
 const auth      = require('../middleware/auth');
 const isAdmin   = require('../middleware/isAdmin');
-
-// The ENV variables.
-// const jwtPrivate = process.env.JWT_TOKEN;
 
 router.get('/', [auth, isAdmin], async(req, res) => {
     const users = await User.find({}).sort('-isAdmin').select('-passwordHash');
