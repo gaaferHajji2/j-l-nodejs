@@ -49,10 +49,6 @@ router.get('/:id', [objectId, auth, isAdmin], async (req, res) => {
                 populate: 'category',
             }
         })
-        // .populate({
-        //     path: 'orderItems',
-        //     populate: 'product',
-        // });
 
     if(!order) {
         return res.status(404).json({
@@ -64,7 +60,7 @@ router.get('/:id', [objectId, auth, isAdmin], async (req, res) => {
     return res.status(200).json({
         status: true,
         msg: 'Successfully Getting Order',
-        'data' : order,
+        'data': order,
     }).end();
 });
 
