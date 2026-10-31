@@ -1,6 +1,3 @@
-const jwt           = require('jsonwebtoken');
-const jwtPrivate    = process.env.JWT_TOKEN; 
-
 module.exports = function(req, res, next) {
     try {
         if(!req.user.isAdmin) {
