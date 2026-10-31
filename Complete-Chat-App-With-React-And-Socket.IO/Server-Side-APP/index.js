@@ -1,13 +1,8 @@
 require('dotenv/config');
-
 const express = require('express');
-
 require('express-async-errors');
-
 const mongoose = require('mongoose');
-
 const cors = require('cors');
-
 const morgan = require('morgan');
 
 /**
@@ -28,25 +23,19 @@ const messageRoutes = require("./routes/messageRoutes");
 const app = express();
 
 app.use(express.json());
-
 app.use(cors());
-
 app.use(morgan('tiny'));
 
 /**
  * The Routes Section.
  */
 app.use('/api/users', userRoutes);
-
 app.use('/api/chats', chatRoutes);
-
 app.use('/api/messages', messageRoutes);
 ////////////////////////////////////////////////////////////////////////
 
 app.use((err, req, res, next) => {
-
     console.error("The Error Message is: ", err);
-
     return res.status(500).json({
         "status": false,
         "msg-01": "حدث خطأ في السيرفر، يرجى المحاولة لاحقا",
